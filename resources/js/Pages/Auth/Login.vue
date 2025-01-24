@@ -31,13 +31,19 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <div
+            v-if="status"
+            class="mb-4 text-sm font-medium text-green-600"
+        >
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel
+                    for="email"
+                    value="Email"
+                />
 
                 <TextInput
                     id="email"
@@ -49,11 +55,17 @@ const submit = () => {
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.email"
+                />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel
+                    for="password"
+                    value="Password"
+                />
 
                 <TextInput
                     id="password"
@@ -64,15 +76,19 @@ const submit = () => {
                     autocomplete="current-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.password"
+                />
             </div>
 
             <div class="mt-4 block">
                 <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
+                    <Checkbox
+                        name="remember"
+                        v-model:checked="form.remember"
+                    />
+                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
                 </label>
             </div>
 

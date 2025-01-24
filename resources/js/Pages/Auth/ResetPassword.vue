@@ -33,7 +33,10 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel
+                    for="email"
+                    value="Email"
+                />
 
                 <TextInput
                     id="email"
@@ -45,11 +48,17 @@ const submit = () => {
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.email"
+                />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel
+                    for="password"
+                    value="Password"
+                />
 
                 <TextInput
                     id="password"
@@ -60,7 +69,10 @@ const submit = () => {
                     autocomplete="new-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.password"
+                />
             </div>
 
             <div class="mt-4">
