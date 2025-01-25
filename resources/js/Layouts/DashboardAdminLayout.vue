@@ -28,7 +28,7 @@ const navigation = [
     },
     {
         name: 'Users',
-        href: '',
+        href: route('users.index'),
         icon: Users,
         current: '/users',
     },
