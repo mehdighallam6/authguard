@@ -45,6 +45,8 @@ const navigation = [
         current: '/authenticators',
     },
 ];
+
+var pathname = window.location.pathname;
 </script>
 
 <template>
@@ -71,7 +73,12 @@ const navigation = [
                         <Link
                             v-for="item in navigation"
                             :href="item.href"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                            :class="[
+                                item.current == pathname
+                                    ? 'bg-muted text-primary'
+                                    : 'text-muted-foreground',
+                                'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary',
+                            ]"
                         >
                             <component
                                 :is="item.icon"
@@ -113,7 +120,12 @@ const navigation = [
                             <Link
                                 v-for="item in navigation"
                                 :href="item.href"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                                :class="[
+                                    item.current == pathname
+                                        ? 'bg-muted text-foreground'
+                                        : 'text-muted-foreground',
+                                    'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground',
+                                ]"
                             >
                                 <component
                                     :is="item.icon"
