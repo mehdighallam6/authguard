@@ -19,6 +19,7 @@ import {
     ShoppingCart,
     Users,
 } from 'lucide-vue-next';
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -161,12 +162,26 @@ import {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuItem>
+                            <Link
+                                :href="route('profile.edit')"
+                                as="button"
+                                class="w-full h-full flex items-center"
+                            >
+                                Profile
+                            </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                        <DropdownMenuItem>Support</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Logout</DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link
+                                :href="route('logout')"
+                                method="post"
+                                as="button"
+                                class="w-full h-full flex items-center"
+                            >
+                                Logout
+                            </Link>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </header>
