@@ -35,6 +35,10 @@ import {
     PlusCircle,
     Search,
 } from 'lucide-vue-next';
+
+defineProps<{
+    users: any;
+}>();
 </script>
 
 <template>
@@ -128,114 +132,27 @@ import {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    <TableRow>
+                                    <TableRow
+                                        v-for="user in users.data"
+                                        :key="user.id"
+                                    >
                                         <TableCell class="hidden sm:table-cell">
-                                            1
+                                            {{ user.id }}
                                         </TableCell>
                                         <TableCell class="font-medium">
-                                            Laser Lemonade Machine
+                                            {{ user.name }}
                                         </TableCell>
                                         <TableCell>
                                             <Badge variant="outline">
-                                                Draft
+                                                Role
                                             </Badge>
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
-                                            2023-07-12 10:42 AM
-                                        </TableCell>
-                                        <TableCell>
-                                            <DropdownMenu>
-                                                <DropdownMenuTrigger as-child>
-                                                    <Button
-                                                        aria-haspopup="true"
-                                                        size="icon"
-                                                        variant="ghost"
-                                                    >
-                                                        <MoreHorizontal
-                                                            class="h-4 w-4"
-                                                        />
-                                                        <span class="sr-only"
-                                                            >Toggle menu</span
-                                                        >
-                                                    </Button>
-                                                </DropdownMenuTrigger>
-                                                <DropdownMenuContent
-                                                    align="end"
-                                                >
-                                                    <DropdownMenuLabel
-                                                        >Actions</DropdownMenuLabel
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Edit</DropdownMenuItem
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Delete</DropdownMenuItem
-                                                    >
-                                                </DropdownMenuContent>
-                                            </DropdownMenu>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell class="hidden sm:table-cell">
-                                            1
-                                        </TableCell>
-                                        <TableCell class="font-medium">
-                                            Laser Lemonade Machine
-                                        </TableCell>
-                                        <TableCell>
-                                            <Badge variant="outline">
-                                                Draft
-                                            </Badge>
-                                        </TableCell>
-                                        <TableCell class="hidden md:table-cell">
-                                            2023-07-12 10:42 AM
-                                        </TableCell>
-                                        <TableCell>
-                                            <DropdownMenu>
-                                                <DropdownMenuTrigger as-child>
-                                                    <Button
-                                                        aria-haspopup="true"
-                                                        size="icon"
-                                                        variant="ghost"
-                                                    >
-                                                        <MoreHorizontal
-                                                            class="h-4 w-4"
-                                                        />
-                                                        <span class="sr-only"
-                                                            >Toggle menu</span
-                                                        >
-                                                    </Button>
-                                                </DropdownMenuTrigger>
-                                                <DropdownMenuContent
-                                                    align="end"
-                                                >
-                                                    <DropdownMenuLabel
-                                                        >Actions</DropdownMenuLabel
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Edit</DropdownMenuItem
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Delete</DropdownMenuItem
-                                                    >
-                                                </DropdownMenuContent>
-                                            </DropdownMenu>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell class="hidden sm:table-cell">
-                                            1
-                                        </TableCell>
-                                        <TableCell class="font-medium">
-                                            Laser Lemonade Machine
-                                        </TableCell>
-                                        <TableCell>
-                                            <Badge variant="outline">
-                                                Draft
-                                            </Badge>
-                                        </TableCell>
-                                        <TableCell class="hidden md:table-cell">
-                                            2023-07-12 10:42 AM
+                                            {{
+                                                new Date(
+                                                    user.created_at,
+                                                ).toDateString()
+                                            }}
                                         </TableCell>
                                         <TableCell>
                                             <DropdownMenu>
@@ -274,9 +191,11 @@ import {
                         </CardContent>
                         <CardFooter>
                             <div class="text-xs text-muted-foreground">
-                                Showing <strong>1-10</strong> of
-                                <strong>32</strong>
-                                products
+                                Showing
+                                <strong>{{ users.from }}-{{ users.to }}</strong>
+                                of
+                                <strong>{{ users.total }}</strong>
+                                users
                             </div>
                         </CardFooter>
                     </Card>
