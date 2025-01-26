@@ -90,7 +90,7 @@ var pathname = window.location.pathname;
                 </div>
             </div>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col h-screen overflow-hidden">
             <header
                 class="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6"
             >
@@ -174,7 +174,7 @@ var pathname = window.location.pathname;
                     </DropdownMenuContent>
                 </DropdownMenu>
             </header>
-            <main>
+            <main class="flex-1 overflow-y-auto">
                 <slot />
             </main>
         </div>
