@@ -18,6 +18,8 @@ import {
     Key,
 } from 'lucide-vue-next';
 import { Link } from '@inertiajs/vue3';
+import { Icon } from '@iconify/vue';
+import { useColorMode } from '@vueuse/core';
 
 const navigation = [
     {
@@ -47,6 +49,8 @@ const navigation = [
 ];
 
 var pathname = window.location.pathname;
+
+const mode = useColorMode();
 </script>
 
 <template>
@@ -56,7 +60,7 @@ var pathname = window.location.pathname;
         <div class="hidden border-r bg-muted/40 md:block">
             <div class="flex h-full max-h-screen flex-col gap-2">
                 <div
-                    class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6"
+                    class="flex h-14 items-center justify-between border-b px-4 lg:h-[60px] lg:px-6"
                 >
                     <a
                         href="/"
@@ -65,6 +69,32 @@ var pathname = window.location.pathname;
                         <Package2 class="h-6 w-6" />
                         <span class="">AuthGuard</span>
                     </a>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger as-child>
+                            <Button variant="outline">
+                                <Icon
+                                    icon="radix-icons:moon"
+                                    class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+                                />
+                                <Icon
+                                    icon="radix-icons:sun"
+                                    class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+                                />
+                                <span class="sr-only">Toggle theme</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem @click="mode = 'light'">
+                                Light
+                            </DropdownMenuItem>
+                            <DropdownMenuItem @click="mode = 'dark'">
+                                Dark
+                            </DropdownMenuItem>
+                            <DropdownMenuItem @click="mode = 'auto'">
+                                System
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
                 <div class="flex-1">
                     <nav
@@ -110,13 +140,51 @@ var pathname = window.location.pathname;
                         class="flex flex-col"
                     >
                         <nav class="grid gap-2 text-lg font-medium">
-                            <a
-                                href="#"
-                                class="flex items-center gap-2 text-lg font-semibold"
+                            <div
+                                class="flex justify-evenly items-center px-4 py-2"
                             >
-                                <Package2 class="h-6 w-6" />
-                                <span class="sr-only">AuthGuard</span>
-                            </a>
+                                <a
+                                    href="#"
+                                    class="flex items-center gap-2 text-lg font-semibold"
+                                >
+                                    <Package2 class="h-6 w-6" />
+                                    <span class="sr-only">AuthGuard</span>
+                                </a>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger as-child>
+                                        <Button variant="outline">
+                                            <Icon
+                                                icon="radix-icons:moon"
+                                                class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+                                            />
+                                            <Icon
+                                                icon="radix-icons:sun"
+                                                class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+                                            />
+                                            <span class="sr-only"
+                                                >Toggle theme</span
+                                            >
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                        <DropdownMenuItem
+                                            @click="mode = 'light'"
+                                        >
+                                            Light
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            @click="mode = 'dark'"
+                                        >
+                                            Dark
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem
+                                            @click="mode = 'auto'"
+                                        >
+                                            System
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
                             <Link
                                 v-for="item in navigation"
                                 :href="item.href"
