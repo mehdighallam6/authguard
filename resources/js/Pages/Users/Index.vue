@@ -144,7 +144,9 @@ defineProps<{
                                         </TableCell>
                                         <TableCell>
                                             <Badge variant="outline">
-                                                Role
+                                                {{
+                                                    user.roles[0]?.name || 'N/A'
+                                                }}
                                             </Badge>
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
