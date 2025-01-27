@@ -35,10 +35,32 @@ import {
     PlusCircle,
     Search,
 } from 'lucide-vue-next';
+import {
+    Pagination,
+    PaginationEllipsis,
+    PaginationFirst,
+    PaginationLast,
+    PaginationList,
+    PaginationListItem,
+    PaginationNext,
+    PaginationPrev,
+} from '@/Components/ui/pagination';
+import { router } from '@inertiajs/vue3';
 
 defineProps<{
     users: any;
 }>();
+
+const handlePageChange = (url: any) => {
+    router.get(
+        url,
+        {},
+        {
+            preserveState: true,
+            preserveScroll: true,
+        },
+    );
+};
 </script>
 
 <template>
@@ -201,6 +223,73 @@ defineProps<{
                             </div>
                         </CardFooter>
                     </Card>
+                    <div class="flex justify-center">
+                        <Pagination
+                            v-slot="{ page }"
+                            :total="users.total"
+                            :sibling-count="1"
+                            show-edges
+                            :default-page="1"
+                            :items-per-page="users.per_page"
+                        >
+                            <PaginationList
+                                v-slot="{ items }"
+                                class="flex items-center gap-1"
+                            >
+                                <PaginationFirst
+                                    @click.prevent="
+                                        handlePageChange(users.first_page_url)
+                                    "
+                                />
+                                <PaginationPrev
+                                    @click.prevent="
+                                        handlePageChange(users.prev_page_url)
+                                    "
+                                />
+
+                                <template v-for="(item, index) in items">
+                                    <PaginationListItem
+                                        v-if="item.type === 'page'"
+                                        :key="index"
+                                        :value="item.value"
+                                        as-child
+                                    >
+                                        <Button
+                                            @click.prevent="
+                                                handlePageChange(
+                                                    users.links[item.value].url,
+                                                )
+                                            "
+                                            class="w-10 h-10 p-0"
+                                            :variant="
+                                                item.value === page
+                                                    ? 'default'
+                                                    : 'outline'
+                                            "
+                                        >
+                                            {{ item.value }}
+                                        </Button>
+                                    </PaginationListItem>
+                                    <PaginationEllipsis
+                                        v-else
+                                        :key="item.type"
+                                        :index="index"
+                                    />
+                                </template>
+
+                                <PaginationNext
+                                    @click.prevent="
+                                        handlePageChange(users.next_page_url)
+                                    "
+                                />
+                                <PaginationLast
+                                    @click.prevent="
+                                        handlePageChange(users.last_page_url)
+                                    "
+                                />
+                            </PaginationList>
+                        </Pagination>
+                    </div>
                 </main>
             </div>
         </div>
