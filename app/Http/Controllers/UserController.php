@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
@@ -24,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Users/Create', [
+            'roles' => RolesEnum::cases(),
+        ]);
     }
 
     /**

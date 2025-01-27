@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DashboardAdminLayout from '@/Layouts/DashboardAdminLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { Badge } from '@/Components/ui/badge';
 import { Button } from '@/Components/ui/button';
 import {
@@ -113,9 +113,9 @@ const handlePageChange = (url: any) => {
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
-                            <Button
-                                size="sm"
-                                class="h-9 gap-1"
+                            <Link
+                                :href="route('users.create')"
+                                class="flex justify-center items-center border rounded-md px-3 py-2 text-sm bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 gap-1"
                             >
                                 <PlusCircle class="h-3.5 w-3.5" />
                                 <span
@@ -123,7 +123,7 @@ const handlePageChange = (url: any) => {
                                 >
                                     Add User
                                 </span>
-                            </Button>
+                            </Link>
                         </div>
                     </div>
 
