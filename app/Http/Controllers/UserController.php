@@ -6,6 +6,7 @@ use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -35,7 +36,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required|string|exists:roles,name',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole($request->role);
+
+        return to_route('users.index');
     }
 
     /**
