@@ -144,8 +144,11 @@ const handlePageChange = (url: any) => {
                                             <span class="sr-only">img</span>
                                         </TableHead>
                                         <TableHead>Name</TableHead>
-                                        <TableHead>Role</TableHead>
                                         <TableHead class="hidden md:table-cell">
+                                            Email
+                                        </TableHead>
+                                        <TableHead>Role</TableHead>
+                                        <TableHead class="hidden lg:table-cell">
                                             Created at
                                         </TableHead>
                                         <TableHead>
@@ -164,6 +167,9 @@ const handlePageChange = (url: any) => {
                                         <TableCell class="font-medium">
                                             {{ user.name }}
                                         </TableCell>
+                                        <TableCell class="hidden md:table-cell">
+                                            {{ user.email }}
+                                        </TableCell>
                                         <TableCell>
                                             <Badge variant="outline">
                                                 {{
@@ -171,7 +177,7 @@ const handlePageChange = (url: any) => {
                                                 }}
                                             </Badge>
                                         </TableCell>
-                                        <TableCell class="hidden md:table-cell">
+                                        <TableCell class="hidden lg:table-cell">
                                             {{
                                                 new Date(
                                                     user.created_at,
