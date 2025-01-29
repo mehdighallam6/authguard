@@ -225,7 +225,7 @@ const handlePageChange = (url: any) => {
                                                                 )
                                                             "
                                                             as="button"
-                                                            class="flex justify-start w-full h-full p-1.5 text-sm text-primary"
+                                                            class="flex justify-start w-full h-full p-1.5 text-sm text-primary font-medium"
                                                         >
                                                             Edit
                                                         </Link>
