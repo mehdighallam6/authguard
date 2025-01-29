@@ -46,6 +46,17 @@ import {
     PaginationPrev,
 } from '@/Components/ui/pagination';
 import { router } from '@inertiajs/vue3';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/Components/ui/alert-dialog';
 
 defineProps<{
     users: any;
@@ -203,15 +214,55 @@ const handlePageChange = (url: any) => {
                                                 <DropdownMenuContent
                                                     align="end"
                                                 >
-                                                    <DropdownMenuLabel
-                                                        >Actions</DropdownMenuLabel
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Edit</DropdownMenuItem
-                                                    >
-                                                    <DropdownMenuItem
-                                                        >Delete</DropdownMenuItem
-                                                    >
+                                                    <AlertDialog>
+                                                        <AlertDialogTrigger
+                                                            as-child
+                                                        >
+                                                            <Button
+                                                                variant="ghost"
+                                                                class="flex justify-start w-full h-full p-1.5 text-sm text-primary"
+                                                            >
+                                                                Delete
+                                                            </Button>
+                                                        </AlertDialogTrigger>
+                                                        <AlertDialogContent>
+                                                            <AlertDialogHeader>
+                                                                <AlertDialogTitle
+                                                                    >Are you
+                                                                    absolutely
+                                                                    sure?</AlertDialogTitle
+                                                                >
+                                                                <AlertDialogDescription>
+                                                                    This action
+                                                                    cannot be
+                                                                    undone. This
+                                                                    will
+                                                                    permanently
+                                                                    delete the
+                                                                    user and
+                                                                    remove your
+                                                                    data from
+                                                                    our servers.
+                                                                </AlertDialogDescription>
+                                                            </AlertDialogHeader>
+                                                            <AlertDialogFooter>
+                                                                <AlertDialogCancel
+                                                                    >Cancel</AlertDialogCancel
+                                                                >
+                                                                <Link
+                                                                    :href="
+                                                                        route(
+                                                                            'users.destroy',
+                                                                            user.id,
+                                                                        )
+                                                                    "
+                                                                    method="delete"
+                                                                    class="flex justify-center items-center border rounded-md px-4 py-1.5 lg:py-0 h-full text-md bg-primary text-primary-foreground hover:bg-primary/90"
+                                                                    >Delete</Link
+                                                                >
+                                                            </AlertDialogFooter>
+                                                        </AlertDialogContent>
+                                                    </AlertDialog>
                                                 </DropdownMenuContent>
                                             </DropdownMenu>
                                         </TableCell>
