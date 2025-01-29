@@ -214,13 +214,29 @@ const handlePageChange = (url: any) => {
                                                 <DropdownMenuContent
                                                     align="end"
                                                 >
+                                                    <DropdownMenuItem
+                                                        class="p-0 m-0"
+                                                    >
+                                                        <Link
+                                                            :href="
+                                                                route(
+                                                                    'users.edit',
+                                                                    user.id,
+                                                                )
+                                                            "
+                                                            as="button"
+                                                            class="flex justify-start w-full h-full p-1.5 text-sm text-primary"
+                                                        >
+                                                            Edit
+                                                        </Link>
+                                                    </DropdownMenuItem>
                                                     <AlertDialog>
                                                         <AlertDialogTrigger
                                                             as-child
                                                         >
                                                             <Button
                                                                 variant="ghost"
-                                                                class="flex justify-start w-full h-full p-1.5 text-sm text-primary"
+                                                                class="flex justify-start w-full h-full p-1.5 text-sm text-primary rounded-sm"
                                                             >
                                                                 Delete
                                                             </Button>
