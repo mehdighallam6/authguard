@@ -18,7 +18,7 @@ class UserController extends Controller
         $users = User::latest()
             ->when($request->has('search'), fn($query) => $query->where('email', 'like', "%{$request->search}%"))
             ->with('roles:name')
-            ->paginate(1)
+            ->paginate(10)
             ->withQueryString();
         return Inertia::render('Users/Index', [
             'users' => $users
