@@ -68,7 +68,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return Inertia::render('Users/Edit', [
-            'user' => $user,
+            'user' => $user->load('roles:name'),
             'roles' => RolesEnum::cases(),
         ]);
     }
@@ -76,9 +76,24 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|min:8',
+            'role' => 'required|string|exists:roles,name',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->syncRoles($request->role);
+
+        return to_route('users.index');
     }
 
     /**

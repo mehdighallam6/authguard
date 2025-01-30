@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import DashboardAdminLayout from '@/Layouts/DashboardAdminLayout.vue';
+import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/Components/ui/select';
 import { Separator } from '@/Components/ui/separator';
 import { useForm } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps<{
     user: any;
@@ -14,7 +24,7 @@ const form = useForm({
     name: props.user.name,
     email: props.user.email,
     password: '',
-    role: props.user.role,
+    role: props.user.roles[0]?.name,
 });
 </script>
 <template>
@@ -99,6 +109,50 @@ const form = useForm({
                         >
                             {{ form.errors.password }}
                         </p>
+                    </div>
+                    <!--Role-->
+                    <div>
+                        <label
+                            class="block mb-2 ml-1"
+                            for="role"
+                        >
+                            Role
+                        </label>
+                        <Select v-model="form.role">
+                            <SelectTrigger>
+                                <SelectValue :placeholder="form.role" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem
+                                        v-for="role in roles"
+                                        :key="role"
+                                        :value="role"
+                                        :name="form.role"
+                                    >
+                                        {{ role }}
+                                    </SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                        <p
+                            v-if="form.errors.role"
+                            class="text-sm text-red-500 mt-3"
+                        >
+                            {{ form.errors.role }}
+                        </p>
+                    </div>
+
+                    <div class="flex gap-2 justify-end items-center pt-6">
+                        <Link
+                            as="button"
+                            :href="route('users.index')"
+                            class="border border-gray-100/2 rounded-md text-sm px-4 py-2"
+                        >
+                            Cancel
+                        </Link>
+                        <Button type="submit"> Save </Button>
                     </div>
                 </form>
             </div>
