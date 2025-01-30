@@ -57,6 +57,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/Components/ui/alert-dialog';
+import { ref, onMounted } from 'vue';
 
 defineProps<{
     users: any;
@@ -72,6 +73,21 @@ const handlePageChange = (url: any) => {
         },
     );
 };
+
+const search = ref('');
+
+onMounted(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    search.value = urlParams.get('search') || '';
+});
+
+function performSearch(event: any) {
+    if (event.keyCode == 13) {
+        router.get('/users', {
+            search: search.value,
+        });
+    }
+}
 </script>
 
 <template>
@@ -89,9 +105,11 @@ const handlePageChange = (url: any) => {
                                 class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"
                             />
                             <Input
+                                v-model="search"
                                 type="search"
-                                placeholder="Search..."
+                                placeholder="Enter an email"
                                 class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
+                                :onkeydown="(e: any) => performSearch(e)"
                             />
                         </div>
                         <div class="ml-auto flex items-center gap-2">
