@@ -98,11 +98,13 @@ function performSearch(event: any) {
 
 const filterByRole = (role: any) => {
     selectedRole.value = role;
-    const { search } = currentQuery;
-    router.get('/users', {
-        role: selectedRole.value,
-        search,
-    });
+    const { role: _, ...updatedQuery } = currentQuery;
+
+    if (role) {
+        updatedQuery.role = role;
+    }
+
+    router.get('/users', updatedQuery);
 };
 </script>
 
@@ -149,6 +151,13 @@ const filterByRole = (role: any) => {
                                         >Filter by</DropdownMenuLabel
                                     >
                                     <DropdownMenuSeparator />
+                                    <DropdownMenuItem
+                                        class="flex justify-between"
+                                        @click="filterByRole('')"
+                                    >
+                                        None
+                                        <CheckIcon v-if="selectedRole == ''" />
+                                    </DropdownMenuItem>
                                     <DropdownMenuItem
                                         class="flex justify-between"
                                         @click="filterByRole('admin')"
