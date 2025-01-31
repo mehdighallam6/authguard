@@ -29,6 +29,7 @@ import {
     TableRow,
 } from '@/Components/ui/table';
 import {
+    CheckIcon,
     File,
     ListFilter,
     MoreHorizontal,
@@ -149,19 +150,21 @@ const filterByRole = (role: any) => {
                                     >
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem
+                                        class="flex justify-between"
                                         @click="filterByRole('admin')"
                                     >
                                         Admin
-                                        <span v-if="selectedRole == 'admin'"
-                                            >*</span
-                                        >
+                                        <CheckIcon
+                                            v-if="selectedRole == 'admin'"
+                                        />
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
+                                        class="flex justify-between"
                                         @click="filterByRole('standard')"
                                         >Standard
-                                        <span v-if="selectedRole == 'standard'"
-                                            >*</span
-                                        >
+                                        <CheckIcon
+                                            v-if="selectedRole == 'standard'"
+                                        />
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
