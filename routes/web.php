@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminUser\AdminTagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -10,6 +11,10 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', UserController::class);
+
+    Route::middleware(['role:admin'])->group(function () {
+        Route::resource('atags', AdminTagController::class);
+    });
 });
 
 Route::middleware('auth')->group(function () {

@@ -36,9 +36,9 @@ const navigation = [
     },
     {
         name: 'Tags',
-        href: '',
+        href: route('atags.index'),
         icon: Tag,
-        current: '/phones',
+        current: '/atags',
     },
     {
         name: 'Authenticators',
