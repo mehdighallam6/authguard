@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminUser\AdminTagController;
+use App\Http\Controllers\StandardUser\StandardTagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -14,6 +15,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('atags', AdminTagController::class);
+    });
+
+    Route::middleware(['role:standard'])->group(function () {
+        Route::resource('stags', StandardTagController::class);
     });
 });
 
