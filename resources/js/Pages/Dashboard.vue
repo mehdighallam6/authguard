@@ -8,6 +8,10 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card';
+
+defineProps<{
+    stats: any;
+}>();
 </script>
 
 <template>
@@ -47,7 +51,9 @@ import {
                         </svg>
                     </CardHeader>
                     <CardContent>
-                        <div class="text-2xl font-bold"> 2350 </div>
+                        <div class="text-2xl font-bold">
+                            {{ stats.users_count }}
+                        </div>
                     </CardContent>
                 </Card>
             </div>

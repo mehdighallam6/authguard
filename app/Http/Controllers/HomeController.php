@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,6 +17,12 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return Inertia::render('Dashboard');
+        $users_count =  User::count();
+
+        $stats = array('users_count' => $users_count);
+
+        return Inertia::render('Dashboard', [
+            'stats' =>  $stats,
+        ]);
     }
 }
