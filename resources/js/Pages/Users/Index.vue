@@ -58,6 +58,7 @@ import {
     AlertDialogTrigger,
 } from '@/Components/ui/alert-dialog';
 import { ref, onMounted } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 
 defineProps<{
     users: any;
@@ -75,19 +76,33 @@ const handlePageChange = (url: any) => {
 };
 
 const search = ref('');
+const selectedRole = ref('');
+const currentQuery = usePage<any>().props.ziggy.query;
 
 onMounted(() => {
     const urlParams = new URLSearchParams(window.location.search);
     search.value = urlParams.get('search') || '';
+    selectedRole.value = urlParams.get('role') || '';
 });
 
 function performSearch(event: any) {
+    const { role } = currentQuery;
     if (event.keyCode == 13) {
         router.get('/users', {
+            role,
             search: search.value,
         });
     }
 }
+
+const filterByRole = (role: any) => {
+    selectedRole.value = role;
+    const { search } = currentQuery;
+    router.get('/users', {
+        role: selectedRole.value,
+        search,
+    });
+};
 </script>
 
 <template>
@@ -133,12 +148,20 @@ function performSearch(event: any) {
                                         >Filter by</DropdownMenuLabel
                                     >
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem checked>
-                                        Active
+                                    <DropdownMenuItem
+                                        @click="filterByRole('admin')"
+                                    >
+                                        Admin
+                                        <span v-if="selectedRole == 'admin'"
+                                            >*</span
+                                        >
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem>Draft</DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Archived
+                                    <DropdownMenuItem
+                                        @click="filterByRole('standard')"
+                                        >Standard
+                                        <span v-if="selectedRole == 'standard'"
+                                            >*</span
+                                        >
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>

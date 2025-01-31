@@ -17,6 +17,11 @@ class UserController extends Controller
     {
         $users = User::latest()
             ->when($request->has('search'), fn($query) => $query->where('email', 'like', "%{$request->search}%"))
+            ->when(
+                $request->has('role'),
+                fn($query) =>
+                $query->whereHas('roles', fn($q) => $q->where('name', $request->role))
+            )
             ->with('roles:name')
             ->paginate(10)
             ->withQueryString();
