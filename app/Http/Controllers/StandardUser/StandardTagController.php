@@ -6,6 +6,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class StandardTagController extends Controller
 {
@@ -29,7 +30,7 @@ class StandardTagController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('StandardUser/Tags/Create');
     }
 
     /**
@@ -37,7 +38,16 @@ class StandardTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Tag::create([
+            'name' => $request->name,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return to_route('stags.index');
     }
 
     /**
@@ -53,7 +63,11 @@ class StandardTagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        Gate::authorize('update', $tag);
+
+        return Inertia::render('StandardUser/Tags/Edit', [
+            'tag' => $tag,
+        ]);
     }
 
     /**
@@ -61,7 +75,17 @@ class StandardTagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        Gate::authorize('update', $tag);
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $tag->update([
+            'name' => $request->name,
+        ]);
+
+        return to_route('stags.index');
     }
 
     /**
@@ -69,6 +93,9 @@ class StandardTagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        Gate::authorize('delete', $tag);
+
+        $tag->delete();
+        return to_route('stags.index');
     }
 }
