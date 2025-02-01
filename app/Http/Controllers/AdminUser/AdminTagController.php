@@ -12,9 +12,13 @@ class AdminTagController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::latest()->paginate(10);
+        $tags = Tag::latest()
+            ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
+            ->with('user:id,name')
+            ->paginate(10)
+            ->withQueryString();
         return Inertia::render('AdminUser/Tags/Index', [
             'tags' => $tags
         ]);

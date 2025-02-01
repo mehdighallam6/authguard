@@ -135,7 +135,7 @@ function performSearch(event: any) {
                                         </TableHead>
                                         <TableHead>Name</TableHead>
                                         <TableHead class="hidden md:table-cell">
-                                            User ID
+                                            User
                                         </TableHead>
                                         <TableHead class="hidden lg:table-cell">
                                             Created at
@@ -157,7 +157,7 @@ function performSearch(event: any) {
                                             {{ tag.name }}
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
-                                            {{ tag.user_id }}
+                                            {{ tag.user.name }}
                                         </TableCell>
 
                                         <TableCell class="hidden lg:table-cell">
