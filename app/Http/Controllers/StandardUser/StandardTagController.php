@@ -14,7 +14,7 @@ class StandardTagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::latest()->paginate(10);
+        $tags = auth()->user()->tags()->latest()->paginate(10);
         return Inertia::render('StandardUser/Tags/Index', [
             'tags' => $tags
         ]);
