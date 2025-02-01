@@ -15,11 +15,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
-        Route::resource('atags', AdminTagController::class);
+        Route::resource('atags', AdminTagController::class)->parameters(['atags' => 'tag']);
     });
 
     Route::middleware(['role:standard'])->group(function () {
-        Route::resource('stags', StandardTagController::class);
+        Route::resource('stags', StandardTagController::class)->parameters(['stags' => 'tag']);
     });
 });
 
