@@ -12,9 +12,13 @@ class StandardTagController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = auth()->user()->tags()->latest()->paginate(10);
+        $tags = Tag::latest()
+            ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
+            ->where('user_id', auth()->id())
+            ->paginate(10)
+            ->withQueryString();
         return Inertia::render('StandardUser/Tags/Index', [
             'tags' => $tags
         ]);
