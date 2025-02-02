@@ -157,7 +157,9 @@ function performSearch(event: any) {
                                             {{ tag.name }}
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
-                                            {{ tag.user.name }}
+                                            {{
+                                                tag.user?.name || 'Deleted user'
+                                            }}
                                         </TableCell>
 
                                         <TableCell class="hidden lg:table-cell">
