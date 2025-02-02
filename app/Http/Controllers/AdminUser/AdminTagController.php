@@ -29,7 +29,7 @@ class AdminTagController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AdminUser/Tags/Create');
     }
 
     /**
@@ -37,7 +37,16 @@ class AdminTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Tag::create([
+            'name' => $request->name,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return to_route('atags.index');
     }
 
     /**
@@ -53,7 +62,9 @@ class AdminTagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return Inertia::render('AdminUser/Tags/Edit', [
+            'tag' => $tag,
+        ]);
     }
 
     /**
@@ -61,7 +72,15 @@ class AdminTagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $tag->update([
+            'name' => $request->name,
+        ]);
+
+        return to_route('atags.index');
     }
 
     /**
@@ -69,6 +88,7 @@ class AdminTagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return to_route('atags.index');
     }
 }
