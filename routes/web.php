@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminUser\AdminTagController;
 use App\Http\Controllers\StandardUser\StandardTagController;
+use App\Http\Controllers\AdminUser\AdminAuthenticatorController;
+use App\Http\Controllers\StandardUser\StandardAuthenticatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -16,10 +18,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('atags', AdminTagController::class)->parameters(['atags' => 'tag']);
+        Route::resource('aauthenticators', AdminAuthenticatorController::class)->parameters(['aauthenticators' => 'authenticators']);
     });
 
     Route::middleware(['role:standard'])->group(function () {
         Route::resource('stags', StandardTagController::class)->parameters(['stags' => 'tag']);
+        Route::resource('sauthenticators', StandardAuthenticatorController::class)->parameters(['sauthenticators' => 'authenticators']);
     });
 });
 

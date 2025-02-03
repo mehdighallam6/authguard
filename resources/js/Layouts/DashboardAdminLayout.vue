@@ -42,9 +42,9 @@ const navigation = [
     },
     {
         name: 'Authenticators',
-        href: '',
+        href: route('aauthenticators.index'),
         icon: Key,
-        current: '/authenticators',
+        current: '/aauthenticators',
     },
 ];
 
