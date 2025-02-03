@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,8 +27,12 @@ class HomeController extends Controller
 
         // admin user
         $users_count =  User::count();
+        $tags_count =  Tag::count();
 
-        $stats = array('users_count' => $users_count);
+        $stats = array(
+            'users_count' => $users_count,
+            'tags_count' => $tags_count
+        );
 
         return Inertia::render('Dashboard', [
             'stats' =>  $stats,
