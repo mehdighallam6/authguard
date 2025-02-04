@@ -6,6 +6,7 @@ use App\Models\Authenticator;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AdminAuthenticatorController extends Controller
 {
@@ -29,7 +30,9 @@ class AdminAuthenticatorController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AdminUser/Authenticators/Create', [
+            'users' => User::latest()->select(['id', 'name'])->with('tags:id,name,user_id')->get(),
+        ]);
     }
 
     /**
