@@ -5,7 +5,7 @@ import { Input } from '@/Components/ui/input';
 import { Separator } from '@/Components/ui/separator';
 import { useForm } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
-import DashboardStandardLayout from '@/Layouts/DashboardStandardLayout.vue';
+import DashboardAdminLayout from '@/Layouts/DashboardAdminLayout.vue';
 
 const form = useForm({
     name: '',
@@ -13,7 +13,7 @@ const form = useForm({
 </script>
 <template>
     <Head title="Create Tag" />
-    <DashboardStandardLayout>
+    <DashboardAdminLayout>
         <div class="p-6 grid md:grid-cols-2 grid-cols-1">
             <div class="w-full">
                 <div>
@@ -64,5 +64,5 @@ const form = useForm({
                 </form>
             </div>
         </div>
-    </DashboardStandardLayout>
+    </DashboardAdminLayout>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import DashboardStandardLayout from '@/Layouts/DashboardStandardLayout.vue';
+import DashboardAdminLayout from '@/Layouts/DashboardAdminLayout.vue';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Separator } from '@/Components/ui/separator';
@@ -17,7 +17,7 @@ const form = useForm({
 </script>
 <template>
     <Head title="Edit Tag" />
-    <DashboardStandardLayout>
+    <DashboardAdminLayout>
         <div class="p-6 grid md:grid-cols-2 grid-cols-1">
             <div class="w-full">
                 <div>
@@ -68,5 +68,5 @@ const form = useForm({
                 </form>
             </div>
         </div>
-    </DashboardStandardLayout>
+    </DashboardAdminLayout>
 </template>
