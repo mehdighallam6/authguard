@@ -12,7 +12,8 @@ class Authenticator extends Model
     protected $fillable = [
         'name',
         'key',
-        'tag_id'
+        'tag_id',
+        'user_id'
     ];
 
     protected $hidden = [
@@ -32,5 +33,10 @@ class Authenticator extends Model
     public function tag()
     {
         return $this->belongsTo(Tag::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

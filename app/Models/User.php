@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tag::class);
     }
+
+    public function authenticators()
+    {
+        return $this->hasMany(Authenticator::class);
+    }
 }
