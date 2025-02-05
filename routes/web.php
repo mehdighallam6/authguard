@@ -18,12 +18,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('atags', AdminTagController::class)->parameters(['atags' => 'tag']);
-        Route::resource('aauthenticators', AdminAuthenticatorController::class)->parameters(['aauthenticators' => 'authenticators']);
+        Route::resource('aauthenticators', AdminAuthenticatorController::class)->parameters(['aauthenticators' => 'authenticator']);
     });
 
     Route::middleware(['role:standard'])->group(function () {
         Route::resource('stags', StandardTagController::class)->parameters(['stags' => 'tag']);
-        Route::resource('sauthenticators', StandardAuthenticatorController::class)->parameters(['sauthenticators' => 'authenticators']);
+        Route::resource('sauthenticators', StandardAuthenticatorController::class)->parameters(['sauthenticators' => 'authenticator']);
     });
 });
 
