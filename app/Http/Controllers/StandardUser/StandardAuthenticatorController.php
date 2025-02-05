@@ -6,6 +6,7 @@ use App\Models\Authenticator;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 
 class StandardAuthenticatorController extends Controller
 {
@@ -17,6 +18,7 @@ class StandardAuthenticatorController extends Controller
         $authenticators = Authenticator::latest()
             ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
             ->where('user_id', auth()->id())
+            ->with('tag:id,name')
             ->paginate(10)
             ->withQueryString();
         return Inertia::render('StandardUser/Authenticators/Index', [
@@ -29,7 +31,9 @@ class StandardAuthenticatorController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('StandardUser/Authenticators/Create', [
+            'tags' => Tag::latest()->where('user_id',  auth()->id())->select(['id', 'name'])->get()->prepend(['id' => null, 'name' => 'Select Tag']),
+        ]);
     }
 
     /**
@@ -37,7 +41,19 @@ class StandardAuthenticatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'key' => 'required', // special validation should be created
+            'tag_id' => 'nullable|numeric|exists:tags,id',
+        ]);
+
+        $request->merge([
+            'user_id' => auth()->id(),
+        ]);
+
+        Authenticator::create($request->all());
+
+        return to_route('sauthenticators.index');
     }
 
     /**
