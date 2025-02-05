@@ -30,7 +30,7 @@ const navigation = [
     },
     {
         name: 'Authenticators',
-        href: '',
+        href: route('sauthenticators.index'),
         icon: Key,
         current: '/sauthenticators',
     },

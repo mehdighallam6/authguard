@@ -12,9 +12,16 @@ class StandardAuthenticatorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $authenticators = Authenticator::latest()
+            ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
+            ->where('user_id', auth()->id())
+            ->paginate(10)
+            ->withQueryString();
+        return Inertia::render('StandardUser/Authenticators/Index', [
+            'authenticators' => $authenticators
+        ]);
     }
 
     /**
