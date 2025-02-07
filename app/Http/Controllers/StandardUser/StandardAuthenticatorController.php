@@ -69,7 +69,10 @@ class StandardAuthenticatorController extends Controller
      */
     public function edit(Authenticator $authenticator)
     {
-        //
+        return Inertia::render('StandardUser/Authenticators/Edit', [
+            'authenticator' => $authenticator,
+            'tags' => Tag::latest()->where('user_id',  auth()->id())->select(['id', 'name'])->get()->prepend(['id' => null, 'name' => 'Select Tag']),
+        ]);
     }
 
     /**
