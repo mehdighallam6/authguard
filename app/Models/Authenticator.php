@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OTPHP\TOTP;
 
 class Authenticator extends Model
 {
@@ -26,8 +27,7 @@ class Authenticator extends Model
 
     public function getOTPAttribute()
     {
-        // should generate otp here
-        return "generate otp";
+        return TOTP::createFromSecret(str_replace(' ', '', $this->key))->now();
     }
 
     public function tag()
