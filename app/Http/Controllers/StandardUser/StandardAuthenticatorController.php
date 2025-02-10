@@ -80,7 +80,19 @@ class StandardAuthenticatorController extends Controller
      */
     public function update(Request $request, Authenticator $authenticator)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'key' => 'nullable|string',
+            'tag_id' => 'nullable|numeric|exists:tags,id',
+        ]);
+
+        if (!$request->key) {
+            $validated['key'] = $authenticator->key;
+        }
+
+        $authenticator->update($validated);
+
+        return to_route('sauthenticators.index');
     }
 
     /**
