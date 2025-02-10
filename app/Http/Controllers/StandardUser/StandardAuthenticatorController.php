@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use App\Rules\OtpSecretKey;
 
 class StandardAuthenticatorController extends Controller
 {
@@ -42,9 +43,9 @@ class StandardAuthenticatorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'key' => 'required', // special validation should be created
-            'tag_id' => 'nullable|numeric|exists:tags,id',
+            'name' => ['required'],
+            'key' => ['required', 'min:16', new OtpSecretKey()],
+            'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
         ]);
 
         $request->merge([
@@ -81,10 +82,11 @@ class StandardAuthenticatorController extends Controller
     public function update(Request $request, Authenticator $authenticator)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'key' => 'nullable|string',
-            'tag_id' => 'nullable|numeric|exists:tags,id',
+            'name' => ['required', 'string', 'max:255'],
+            'key' => ['required', 'min:16', new OtpSecretKey()],
+            'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
         ]);
+
 
         if (!$request->key) {
             $validated['key'] = $authenticator->key;
