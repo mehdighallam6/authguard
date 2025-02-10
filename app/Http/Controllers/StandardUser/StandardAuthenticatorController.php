@@ -43,7 +43,7 @@ class StandardAuthenticatorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'string', 'max:255'],
             'key' => ['required', 'min:16', new OtpSecretKey()],
             'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
         ]);
@@ -83,7 +83,7 @@ class StandardAuthenticatorController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'key' => ['required', 'min:16', new OtpSecretKey()],
+            'key' => ['nullable', 'min:16', new OtpSecretKey()],
             'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
         ]);
 
