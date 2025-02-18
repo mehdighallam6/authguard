@@ -1,4 +1,4 @@
-# Website App
+# AuthGuard
 
 This is a web application built using Vue.js and Laravel with Inertia.js. The app manages OTP codes with a secret key, implements role-based access control using Spatie Permissions, and integrates an API for requesting OTP codes.
 
