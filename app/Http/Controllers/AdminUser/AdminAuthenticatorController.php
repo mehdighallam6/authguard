@@ -6,7 +6,8 @@ use App\Models\Authenticator;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Tag;
+use App\Rules\OtpSecretKey;
 
 class AdminAuthenticatorController extends Controller
 {
@@ -31,7 +32,7 @@ class AdminAuthenticatorController extends Controller
     public function create()
     {
         return Inertia::render('AdminUser/Authenticators/Create', [
-            'users' => User::latest()->select(['id', 'name'])->with('tags:id,name,user_id')->get(),
+            'tags' => Tag::latest()->where('user_id',  auth()->id())->select(['id', 'name'])->get()->prepend(['id' => null, 'name' => 'Select Tag']),
         ]);
     }
 
@@ -40,7 +41,21 @@ class AdminAuthenticatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'key' => ['required', 'min:16', new OtpSecretKey()],
+            'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
+        ]);
+
+
+        $request->merge([
+            'user_id' => auth()->id(),
+        ]);
+
+        Authenticator::create($request->all());
+
+        return to_route('aauthenticators.index');
     }
 
     /**
