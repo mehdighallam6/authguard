@@ -163,8 +163,7 @@ function performSearch(event: any) {
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
                                             {{
-                                                authenticator.tag?.name ||
-                                                'Deleted tag'
+                                                authenticator.tag?.name || 'N/A'
                                             }}
                                         </TableCell>
 
