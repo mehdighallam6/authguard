@@ -109,16 +109,6 @@ const mode = useColorMode();
                 </svg>
                 AuthGuard
             </div>
-            <div class="relative z-20 mt-auto">
-                <blockquote class="space-y-2">
-                    <p class="text-lg">
-                        &ldquo;This library has saved me countless hours of work
-                        and helped me deliver stunning designs to my clients
-                        faster than ever before.&rdquo;
-                    </p>
-                    <footer class="text-sm"> Sofia Davis </footer>
-                </blockquote>
-            </div>
         </div>
         <div class="lg:p-8">
             <div
@@ -177,6 +167,7 @@ const mode = useColorMode();
                                 <Checkbox
                                     name="remember"
                                     v-model:checked="form.remember"
+                                    class='text-bg-foreground focus:ring-blue-500'
                                 />
                                 <span class="ms-2 text-sm">Remember me</span>
                             </label>
