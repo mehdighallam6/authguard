@@ -140,6 +140,9 @@ function performSearch(event: any) {
                                             Tag
                                         </TableHead>
                                         <TableHead class="hidden lg:table-cell">
+                                            User
+                                        </TableHead>
+                                        <TableHead class="hidden lg:table-cell">
                                             Created at
                                         </TableHead>
                                         <TableHead>
@@ -166,7 +169,12 @@ function performSearch(event: any) {
                                                 authenticator.tag?.name || 'N/A'
                                             }}
                                         </TableCell>
-
+                                        <TableCell class="hidden md:table-cell">
+                                            {{
+                                                authenticator.user?.name ||
+                                                'N/A'
+                                            }}
+                                        </TableCell>
                                         <TableCell class="hidden lg:table-cell">
                                             {{
                                                 new Date(

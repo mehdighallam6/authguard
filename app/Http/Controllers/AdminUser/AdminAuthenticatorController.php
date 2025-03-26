@@ -18,7 +18,7 @@ class AdminAuthenticatorController extends Controller
     {
         $authenticators = Authenticator::latest()
             ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
-            ->with('tag:id,name')
+            ->with(['tag:id,name', 'user:id,name'])
             ->paginate(10)
             ->withQueryString();
         return Inertia::render('AdminUser/Authenticators/Index', [
