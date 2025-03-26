@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authenticator;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,10 +29,12 @@ class HomeController extends Controller
         // admin user
         $users_count =  User::count();
         $tags_count =  Tag::count();
+        $authenticators_count =  Authenticator::count();
 
         $stats = array(
             'users_count' => $users_count,
-            'tags_count' => $tags_count
+            'tags_count' => $tags_count,
+            'authenticators_count' => $authenticators_count,
         );
 
         return Inertia::render('Dashboard', [

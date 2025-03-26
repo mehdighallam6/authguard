@@ -8,7 +8,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card';
-import { TagsIcon, UsersIcon } from 'lucide-vue-next';
+import { KeyIcon, TagsIcon, UsersIcon } from 'lucide-vue-next';
 
 defineProps<{
     stats: any;
@@ -48,6 +48,21 @@ defineProps<{
                     <CardContent>
                         <div class="text-2xl font-bold">
                             {{ stats.tags_count }}
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader
+                        class="flex flex-row items-center justify-between space-y-0 pb-2"
+                    >
+                        <CardTitle class="text-sm font-medium">
+                            Authenticators
+                        </CardTitle>
+                        <KeyIcon class="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div class="text-2xl font-bold">
+                            {{ stats.authenticators_count }}
                         </div>
                     </CardContent>
                 </Card>
