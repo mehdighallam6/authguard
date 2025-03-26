@@ -71,7 +71,15 @@ class AdminAuthenticatorController extends Controller
      */
     public function edit(Authenticator $authenticator)
     {
-        //
+        return Inertia::render('AdminUser/Authenticators/Edit', [
+            'authenticator' => $authenticator,
+            'tags' => Tag::latest()
+                ->with('user:id,name')
+                ->where('user_id',  $authenticator->user_id)
+                ->select(['id', 'name', 'user_id'])
+                ->get()
+                ->prepend(['id' => null, 'name' => 'Select Tag']),
+        ]);
     }
 
     /**
@@ -79,7 +87,19 @@ class AdminAuthenticatorController extends Controller
      */
     public function update(Request $request, Authenticator $authenticator)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'key' => ['nullable', 'min:16', new OtpSecretKey()],
+            'tag_id' => ['nullable', 'numeric', 'exists:tags,id'],
+        ]);
+
+        if (!$request->key) {
+            $validated['key'] = $authenticator->key;
+        }
+
+        $authenticator->update($validated);
+
+        return to_route('aauthenticators.index');
     }
 
     /**
