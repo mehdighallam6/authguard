@@ -138,6 +138,9 @@ function performSearch(event: any) {
                                             User
                                         </TableHead>
                                         <TableHead class="hidden lg:table-cell">
+                                            Authenticators
+                                        </TableHead>
+                                        <TableHead class="hidden lg:table-cell">
                                             Created at
                                         </TableHead>
                                         <TableHead>
@@ -161,7 +164,9 @@ function performSearch(event: any) {
                                                 tag.user?.name || 'Deleted user'
                                             }}
                                         </TableCell>
-
+                                        <TableCell class="hidden lg:table-cell">
+                                            {{ tag.authenticators_count }}
+                                        </TableCell>
                                         <TableCell class="hidden lg:table-cell">
                                             {{
                                                 new Date(

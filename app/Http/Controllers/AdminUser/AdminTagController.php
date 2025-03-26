@@ -17,6 +17,7 @@ class AdminTagController extends Controller
         $tags = Tag::latest()
             ->when($request->has('search'), fn($query) => $query->where('name', 'like', "%{$request->search}%"))
             ->with('user:id,name')
+            ->withCount('authenticators')
             ->paginate(10)
             ->withQueryString();
         return Inertia::render('AdminUser/Tags/Index', [
