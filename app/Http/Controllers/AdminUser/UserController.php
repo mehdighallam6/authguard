@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return Inertia::render('Users/Edit', [
+        return Inertia::render('AdminUser/Users/Edit', [
             'user' => $user->load('roles:name'),
             'roles' => RolesEnum::cases(),
         ]);
