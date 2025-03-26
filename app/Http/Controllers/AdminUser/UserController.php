@@ -89,19 +89,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'required|min:8',
+            'password' => 'nullable|min:8',
             'role' => 'required|string|exists:roles,name',
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        if ($request->filled('password')) {
+            $validated['password'] = Hash::make($request->password);
+        } else {
+            unset($validated['password']);
+        }
 
+        $user->update($validated);
         $user->syncRoles($request->role);
 
         return to_route('users.index');
