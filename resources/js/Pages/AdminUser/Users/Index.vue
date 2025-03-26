@@ -213,6 +213,12 @@ const filterByRole = (role: any) => {
                                         </TableHead>
                                         <TableHead>Role</TableHead>
                                         <TableHead class="hidden lg:table-cell">
+                                            Tags
+                                        </TableHead>
+                                        <TableHead class="hidden lg:table-cell">
+                                            Authenticators
+                                        </TableHead>
+                                        <TableHead class="hidden lg:table-cell">
                                             Created at
                                         </TableHead>
                                         <TableHead>
@@ -240,6 +246,12 @@ const filterByRole = (role: any) => {
                                                     user.roles[0]?.name || 'N/A'
                                                 }}
                                             </Badge>
+                                        </TableCell>
+                                        <TableCell class="hidden lg:table-cell">
+                                            {{ user.tags_count }}
+                                        </TableCell>
+                                        <TableCell class="hidden lg:table-cell">
+                                            {{ user.authenticators_count }}
                                         </TableCell>
                                         <TableCell class="hidden lg:table-cell">
                                             {{

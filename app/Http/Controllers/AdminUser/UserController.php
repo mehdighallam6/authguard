@@ -24,6 +24,7 @@ class UserController extends Controller
                 $query->whereHas('roles', fn($q) => $q->where('name', $request->role))
             )
             ->with('roles:name')
+            ->withCount(['tags', 'authenticators'])
             ->paginate(10)
             ->withQueryString();
         return Inertia::render('AdminUser/Users/Index', [
