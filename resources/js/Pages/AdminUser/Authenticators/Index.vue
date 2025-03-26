@@ -97,7 +97,7 @@ function performSearch(event: any) {
                             <Input
                                 v-model="search"
                                 type="search"
-                                placeholder="Enter an name"
+                                placeholder="Search"
                                 class="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
                                 :onkeydown="(e: any) => performSearch(e)"
                             />
@@ -174,7 +174,9 @@ function performSearch(event: any) {
                                                 ).toDateString()
                                             }}
                                         </TableCell>
-                                        <TableCell>
+                                        <TableCell
+                                            class="flex justify-end items-center"
+                                        >
                                             <DropdownMenu>
                                                 <DropdownMenuTrigger as-child>
                                                     <Button
