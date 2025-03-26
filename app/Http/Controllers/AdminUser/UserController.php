@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminUser;
 
 use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
             ->with('roles:name')
             ->paginate(10)
             ->withQueryString();
-        return Inertia::render('Users/Index', [
+        return Inertia::render('AdminUser/Users/Index', [
             'users' => $users
         ]);
     }
@@ -35,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Users/Create', [
+        return Inertia::render('AdminUser/Users/Create', [
             'roles' => RolesEnum::cases(),
         ]);
     }
