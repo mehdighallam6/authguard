@@ -21,11 +21,9 @@ const form = useForm({
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
-                Profile Information
-            </h2>
+            <h2 class="text-lg font-medium"> Profile Information </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm dark:text-gray-300">
                 Update your account's profile information and email address.
             </p>
         </header>
@@ -38,6 +36,7 @@ const form = useForm({
                 <InputLabel
                     for="name"
                     value="Name"
+                    class="dark:text-gray-400"
                 />
 
                 <TextInput
@@ -60,6 +59,7 @@ const form = useForm({
                 <InputLabel
                     for="email"
                     value="Email"
+                    class="dark:text-gray-400"
                 />
 
                 <TextInput
