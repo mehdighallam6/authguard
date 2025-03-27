@@ -107,6 +107,7 @@ class AdminAuthenticatorController extends Controller
      */
     public function destroy(Authenticator $authenticator)
     {
-        //
+        $authenticator->delete();
+        return to_route('aauthenticators.index');
     }
 }
