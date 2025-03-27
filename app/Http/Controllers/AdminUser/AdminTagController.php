@@ -39,7 +39,7 @@ class AdminTagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:100',
         ]);
 
         Tag::create([
@@ -74,7 +74,7 @@ class AdminTagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:100',
         ]);
 
         $tag->update([
