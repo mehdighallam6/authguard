@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Rules\OtpSecretKey;
+use Illuminate\Support\Facades\Gate;
 
 class StandardAuthenticatorController extends Controller
 {
@@ -70,6 +71,8 @@ class StandardAuthenticatorController extends Controller
      */
     public function edit(Authenticator $authenticator)
     {
+        Gate::authorize('update', $authenticator);
+
         return Inertia::render('StandardUser/Authenticators/Edit', [
             'authenticator' => $authenticator,
             'tags' => Tag::latest()->where('user_id',  auth()->id())->select(['id', 'name'])->get()->prepend(['id' => null, 'name' => 'Select Tag']),
@@ -81,6 +84,9 @@ class StandardAuthenticatorController extends Controller
      */
     public function update(Request $request, Authenticator $authenticator)
     {
+
+        Gate::authorize('update', $authenticator);
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'key' => ['nullable', 'min:16', new OtpSecretKey()],
@@ -102,6 +108,10 @@ class StandardAuthenticatorController extends Controller
      */
     public function destroy(Authenticator $authenticator)
     {
-        //
+        Gate::authorize('delete', $authenticator);
+
+        $authenticator->delete();
+
+        return to_route('sauthenticators.index');
     }
 }
