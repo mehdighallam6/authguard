@@ -47,11 +47,26 @@ This is a web application built using Vue.js and Laravel with Inertia.js. The ap
     php artisan key:generate
     ```
 
-5. **Run migrations and seed roles/permissions:**
+5. **Run migrations and seed user/roles**
 
     ```sh
-    php artisan migrate --seed
+    php artisan migrate
     ```
+
+    ```sh
+    php artisan db:seed
+    ```
+
+## Seeded Users
+
+After running the seeder, two users are available for testing:
+
+| Role         | Email                    | Password     |
+| ------------ | ------------------------ | ------------ |
+| **Admin**    | test@authguard.hello     | admin@789    |
+| **Standard** | standard@authguard.hello | standard@123 |
+
+You can use these credentials to log in and test different role-based access levels.
 
 6. **Build frontend assets:**
 
