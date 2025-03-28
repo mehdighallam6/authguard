@@ -61,4 +61,9 @@ This is a web application built using Vue.js and Laravel with Inertia.js. The ap
 
 ## API Endpoints
 
-- `POST /api/request-otp` - Request a new OTP.
+All API endpoints except `/api/login` require authentication using Laravel Sanctum.
+
+- `POST /api/login` - Authenticate user and get access token
+- `POST /api/logout` - Logout and invalidate token
+- `GET /api/user` - Get authenticated user details
+- `POST /api/get-otp` - Request a new OTP code
