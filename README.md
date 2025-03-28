@@ -61,14 +61,14 @@ AuthGuard is a web application built using Vue.js and Laravel with Inertia.js. I
     php artisan db:seed
     ```
 
-After running the seeder, two users are available for testing:
+    After running the seeder, two users are available for testing:
 
-| Role         | Email                    | Password     |
-| ------------ | ------------------------ | ------------ |
-| **Admin**    | admin@authguard.hello    | admin@789    |
-| **Standard** | standard@authguard.hello | standard@123 |
+    | Role         | Email                    | Password     |
+    | ------------ | ------------------------ | ------------ |
+    | **Admin**    | admin@authguard.hello    | admin@789    |
+    | **Standard** | standard@authguard.hello | standard@123 |
 
-You can use these credentials to log in and test different role-based access levels.
+    You can use these credentials to log in and test different role-based access levels.
 
 6. **Build frontend assets:**
 
