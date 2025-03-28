@@ -63,7 +63,7 @@ After running the seeder, two users are available for testing:
 
 | Role         | Email                    | Password     |
 | ------------ | ------------------------ | ------------ |
-| **Admin**    | test@authguard.hello     | admin@789    |
+| **Admin**    | admin@authguard.hello     | admin@789    |
 | **Standard** | standard@authguard.hello | standard@123 |
 
 You can use these credentials to log in and test different role-based access levels.

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Admin User',
-            'email' => 'test@authguard.hello',
+            'email' => 'admin@authguard.hello',
             'password' => Hash::make('admin@789')
         ])->assignRole('admin');
 
