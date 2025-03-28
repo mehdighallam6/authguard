@@ -10,6 +10,7 @@ AuthGuard is a web application built using Vue.js and Laravel with Inertia.js. I
 - **OTP Management** using a secret key.
 - **Spatie Permissions** for role and permission handling.
 - **API Integration** to request OTP codes securely.
+- **Dark Mode**: Toggle dark mode on/off for a better visual experience.
 
 ## Technologies Used
 
@@ -63,7 +64,7 @@ After running the seeder, two users are available for testing:
 
 | Role         | Email                    | Password     |
 | ------------ | ------------------------ | ------------ |
-| **Admin**    | admin@authguard.hello     | admin@789    |
+| **Admin**    | admin@authguard.hello    | admin@789    |
 | **Standard** | standard@authguard.hello | standard@123 |
 
 You can use these credentials to log in and test different role-based access levels.
