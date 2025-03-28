@@ -55,7 +55,7 @@ watch(selectedTag, (newTag) => {
                     class="space-y-8"
                     @submit.prevent="
                         form.put(
-                            route('sauthenticators.update', authenticator.id),
+                            route('aauthenticators.update', authenticator.id),
                         )
                     "
                 >
