@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
@@ -13,12 +13,12 @@ class ApiAuthController extends Controller
     {
         $fields = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|string',
         ]);
 
-        $user = User::where("email", $fields["email"])->where("password", $fields["password"])->first();
+        $user = User::where("email", $fields["email"])->first();
 
-        if ($user) {
+        if ($user || !Hash::check($fields['password'], $user->password)) {
             $token = $user->createToken('myapptoken')->plainTextToken;
             $response = [
                 'token' => $token,
