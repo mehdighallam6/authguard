@@ -61,7 +61,7 @@ This is a web application built using Vue.js and Laravel with Inertia.js. The ap
 
 ## API Endpoints
 
-All API endpoints except `/api/login` require authentication using Laravel Sanctum.
+All API endpoints require authentication using Laravel Sanctum except `/api/login`.
 
 - `POST /api/login` - Authenticate user and get access token
 - `POST /api/logout` - Logout and invalidate token
