@@ -19,6 +19,7 @@ AuthGuard is a web application built using Vue.js and Laravel with Inertia.js. I
 - Inertia.js
 - Spatie Permissions
 - API for OTP requests
+- ShadCN Vue for UI components
 
 ## Installation
 
