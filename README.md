@@ -57,8 +57,6 @@ This is a web application built using Vue.js and Laravel with Inertia.js. The ap
     php artisan db:seed
     ```
 
-## Seeded Users
-
 After running the seeder, two users are available for testing:
 
 | Role         | Email                    | Password     |
