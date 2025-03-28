@@ -1,6 +1,8 @@
 # AuthGuard
 
-This is a web application built using Vue.js and Laravel with Inertia.js. The app manages OTP codes with a secret key, implements role-based access control using Spatie Permissions, and integrates an API for requesting OTP codes.
+AuthGuard is a web application built using Vue.js and Laravel with Inertia.js. It manages OTP codes using a secret key, implements role-based access control with Spatie Permissions, and provides an API for requesting OTP codes.
+
+🚀 Think of it like Google Authenticator, but instead of scanning a QR code, you manually enter a secret key to generate OTPs.
 
 ## Features
 
