@@ -92,8 +92,8 @@ All API endpoints require authentication using Laravel Sanctum except `/api/logi
 ## Screenshots
 
 ### Website
-![AuthGuard Website](website.png)
+![AuthGuard Website](screenshots/website.png)
 
 ### API
-![AuthGuard API](api.png)
+![AuthGuard API](screenshots/api.png)
 
