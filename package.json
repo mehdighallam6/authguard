@@ -30,6 +30,7 @@
         "clsx": "^2.1.1",
         "lucide-vue-next": "^0.474.0",
         "radix-vue": "^1.9.12",
+        "reka-ui": "^2.1.1",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7"
     }
