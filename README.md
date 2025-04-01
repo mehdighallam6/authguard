@@ -84,3 +84,12 @@ All API endpoints require authentication using Laravel Sanctum except `/api/logi
 - `POST /api/logout` - Logout and invalidate token
 - `GET /api/user` - Get authenticated user details
 - `POST /api/get-otp` - Request a new OTP code
+
+## Screenshots
+
+### Website
+![AuthGuard Website](website.png)
+
+### API
+![AuthGuard API](api.png)
+
