@@ -68,7 +68,8 @@ AuthGuard is a web application built using Vue.js and Laravel with Inertia.js. I
     | **Admin**    | admin@authguard.hello    | admin@789    |
     | **Standard** | standard@authguard.hello | standard@123 |
     
-    Admin: Has access to view all users' authenticators
+    Admin: Has access to view all users' authenticators.
+    
     Standard: Can only view their own authenticators.
 
     You can use these credentials to log in and test different role-based access levels.
