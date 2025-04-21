@@ -48,12 +48,9 @@ import {
     AlertDialogTrigger,
 } from '@/Components/ui/alert-dialog';
 import { ref, onMounted } from 'vue';
-import {
-    CopyIcon,
-} from 'lucide-vue-next'
-import { Toaster } from '@/Components/ui/toast'
-import { useToast } from '@/Components/ui/toast/use-toast'
-
+import { CopyIcon } from 'lucide-vue-next';
+import { Toaster } from '@/Components/ui/toast';
+import { useToast } from '@/Components/ui/toast/use-toast';
 
 defineProps<{
     authenticators: any;
@@ -85,26 +82,21 @@ function performSearch(event: any) {
     }
 }
 
-
-const { toast, dismiss} = useToast()
-
-
+const { toast, dismiss } = useToast();
 
 function copyOTP(otp: any) {
     // Create a temporary textarea element
-    var tempTextarea = document.createElement("textarea");
+    var tempTextarea = document.createElement('textarea');
     tempTextarea.value = otp;
     tempTextarea.style.width = '1px';
     tempTextarea.style.height = '1px';
-
 
     document.body.appendChild(tempTextarea);
 
     tempTextarea.select();
     tempTextarea.setSelectionRange(0, 99999); // For mobile devices
 
-    document.execCommand("copy");
-
+    document.execCommand('copy');
 
     // Remove the temporary textarea
     document.body.removeChild(tempTextarea);
@@ -119,10 +111,6 @@ function copyOTP(otp: any) {
         dismiss();
     });
 }
-
-
-
-
 </script>
 
 <template>
@@ -209,12 +197,22 @@ function copyOTP(otp: any) {
                                         </TableCell>
                                         <TableCell class="font-medium">
                                             {{ authenticator.otp }}
-                                            <Button variant="ghost"
-                                                    aria-haspopup="true"
-                                                    size="icon"
-                                                    class="h-6 w-6 my-auto mx-3 flex-inline items-center rounded-full text-gray-400 hover:text-gray-600 focus:outline-none  focus:bg-gray-200 focus:ring-offset-2 focus:ring-offset-gray-100"
-                                                    :onclick="(e:any) => copyOTP(authenticator.otp)">
-                                                <CopyIcon class="h-5 w-5" aria-hidden="true" />
+                                            <Button
+                                                variant="ghost"
+                                                aria-haspopup="true"
+                                                size="icon"
+                                                class="h-6 w-6 my-auto mx-3 flex-inline items-center rounded-full text-gray-400 hover:text-gray-600 focus:outline-none focus:bg-gray-200 focus:ring-offset-2 focus:ring-offset-gray-100"
+                                                :onclick="
+                                                    (e: any) =>
+                                                        copyOTP(
+                                                            authenticator.otp,
+                                                        )
+                                                "
+                                            >
+                                                <CopyIcon
+                                                    class="h-5 w-5"
+                                                    aria-hidden="true"
+                                                />
                                             </Button>
                                         </TableCell>
                                         <TableCell class="hidden md:table-cell">
