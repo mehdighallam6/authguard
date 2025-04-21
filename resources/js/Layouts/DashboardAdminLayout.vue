@@ -16,6 +16,7 @@ import {
     Users,
     Tag,
     Key,
+    Telescope,
 } from 'lucide-vue-next';
 import { Link } from '@inertiajs/vue3';
 import { useColorMode } from '@vueuse/core';
@@ -48,6 +49,15 @@ const navigation = [
     },
 ];
 
+const logs = [
+    {
+        name: 'Telescope',
+        href: route('view.telescope'),
+        icon: Telescope,
+        current: '/view.telescope',
+    },
+];
+
 var pathname = window.location.pathname;
 
 const mode = useColorMode();
@@ -73,24 +83,44 @@ const mode = useColorMode();
                 </div>
                 <div class="flex-1">
                     <nav
-                        class="grid items-start px-2 text-sm font-medium lg:px-4"
+                        class="flex flex-col gap-2 justify-between py-2 px-2 text-sm font-medium lg:px-4 h-full"
                     >
-                        <Link
-                            v-for="item in navigation"
-                            :href="item.href"
-                            :class="[
-                                item.current == pathname
-                                    ? 'bg-muted text-primary'
-                                    : 'text-muted-foreground',
-                                'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary',
-                            ]"
-                        >
-                            <component
-                                :is="item.icon"
-                                class="h-4 w-4"
-                            />
-                            {{ item.name }}
-                        </Link>
+                        <div class="">
+                            <Link
+                                v-for="item in navigation"
+                                :href="item.href"
+                                :class="[
+                                    item.current == pathname
+                                        ? 'bg-muted text-primary'
+                                        : 'text-muted-foreground',
+                                    'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary',
+                                ]"
+                            >
+                                <component
+                                    :is="item.icon"
+                                    class="h-4 w-4"
+                                />
+                                {{ item.name }}
+                            </Link>
+                        </div>
+                        <div class="">
+                            <Link
+                                v-for="item in logs"
+                                :href="item.href"
+                                :class="[
+                                    item.current == pathname
+                                        ? 'bg-muted text-primary'
+                                        : 'text-muted-foreground',
+                                    'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary',
+                                ]"
+                            >
+                                <component
+                                    :is="item.icon"
+                                    class="h-4 w-4"
+                                />
+                                {{ item.name }}
+                            </Link>
+                        </div>
                     </nav>
                 </div>
             </div>
@@ -114,35 +144,57 @@ const mode = useColorMode();
                         side="left"
                         class="flex flex-col"
                     >
-                        <nav class="grid gap-2 text-lg font-medium">
-                            <div
-                                class="flex justify-evenly items-center px-4 py-2"
-                            >
-                                <a
-                                    href="#"
-                                    class="flex items-center gap-2 text-lg font-semibold"
+                        <nav
+                            class="flex flex-col justify-between gap-2 text-lg font-medium h-full"
+                        >
+                            <div>
+                                <div
+                                    class="flex justify-evenly items-center px-4 py-2 mb-4"
                                 >
-                                    <Package2 class="h-6 w-6" />
-                                    <span class="sr-only">AuthGuard</span>
-                                </a>
-                                <ModeToggle />
+                                    <a
+                                        href="#"
+                                        class="flex items-center gap-2 text-lg font-semibold"
+                                    >
+                                        <Package2 class="h-6 w-6" />
+                                        <span class="sr-only">AuthGuard</span>
+                                    </a>
+                                    <ModeToggle />
+                                </div>
+                                <Link
+                                    v-for="item in navigation"
+                                    :href="item.href"
+                                    :class="[
+                                        item.current == pathname
+                                            ? 'bg-muted text-foreground'
+                                            : 'text-muted-foreground',
+                                        'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground',
+                                    ]"
+                                >
+                                    <component
+                                        :is="item.icon"
+                                        class="h-5 w-5"
+                                    />
+                                    {{ item.name }}
+                                </Link>
                             </div>
-                            <Link
-                                v-for="item in navigation"
-                                :href="item.href"
-                                :class="[
-                                    item.current == pathname
-                                        ? 'bg-muted text-foreground'
-                                        : 'text-muted-foreground',
-                                    'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground',
-                                ]"
-                            >
-                                <component
-                                    :is="item.icon"
-                                    class="h-5 w-5"
-                                />
-                                {{ item.name }}
-                            </Link>
+                            <div class="">
+                                <Link
+                                    v-for="item in logs"
+                                    :href="item.href"
+                                    :class="[
+                                        item.current == pathname
+                                            ? 'bg-muted text-primary'
+                                            : 'text-muted-foreground',
+                                        'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary',
+                                    ]"
+                                >
+                                    <component
+                                        :is="item.icon"
+                                        class="h-4 w-4"
+                                    />
+                                    {{ item.name }}
+                                </Link>
+                            </div>
                         </nav>
                     </SheetContent>
                 </Sheet>

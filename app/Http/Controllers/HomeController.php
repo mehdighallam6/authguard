@@ -41,4 +41,10 @@ class HomeController extends Controller
             'stats' =>  $stats,
         ]);
     }
+
+
+    public function viewTelescope()
+    {
+        return Inertia::render('Telescope');
+    }
 }

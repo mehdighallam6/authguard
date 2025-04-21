@@ -19,6 +19,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('atags', AdminTagController::class)->parameters(['atags' => 'tag']);
         Route::resource('aauthenticators', AdminAuthenticatorController::class)->parameters(['aauthenticators' => 'authenticator']);
+        // Logs
+        Route::get('view.telescope', [HomeController::class, 'viewTelescope'])->name('view.telescope');
     });
 
     Route::middleware(['role:standard'])->group(function () {
