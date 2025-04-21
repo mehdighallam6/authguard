@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Authenticator;
+use Illuminate\Support\Facades\Auth;
 
 
 class ApiAuthenticatorController extends Controller
@@ -17,20 +18,21 @@ class ApiAuthenticatorController extends Controller
             'name' => ['required', 'exists:authenticators,name'],
         ]);
 
-        // Ensure the user is the owner of the authenticator
-        $authenticator = Authenticator::where('user_id', auth()->user()->id)
+        $user = Auth::user();
+
+        $authenticator = Authenticator::where('user_id', $user->id)
             ->where('name', $request->name)
-            ->get()
             ->first();
 
-        if ($authenticator) {
+
+        if ($authenticator || $user->hasRole('admin')) {
             return response([
-                'otp' => $authenticator->otp,
-            ]);
-        } else {
-            return response([
-                'message' => 'Authenticator not found',
+                'otp' => $authenticator?->otp,
             ]);
         }
+
+        return response([
+            'message' => 'Authenticator not found',
+        ]);
     }
 }
