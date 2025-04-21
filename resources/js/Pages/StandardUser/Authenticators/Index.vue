@@ -145,7 +145,7 @@ function copyOTP(otp: any) {
                                 <span
                                     class="sr-only sm:not-sr-only sm:whitespace-nowrap"
                                 >
-                                    Add Tag
+                                    Add Authenticator
                                 </span>
                             </Link>
                         </div>
