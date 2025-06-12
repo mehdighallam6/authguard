@@ -25,7 +25,7 @@ class ApiAuthenticatorController extends Controller
             ->first();
 
 
-        if ($authenticator || $user->hasRole('admin')) {
+        if ($authenticator) {
             return response([
                 'otp' => $authenticator?->otp,
             ]);
