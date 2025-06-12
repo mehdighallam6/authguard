@@ -18,11 +18,14 @@ class ApiAuthenticatorController extends Controller
             'name' => ['required', 'exists:authenticators,name'],
         ]);
 
-        $user = Auth::user();
+        $query = Authenticator::where('name', $request->name);
 
-        $authenticator = Authenticator::where('user_id', $user->id)
-            ->where('name', $request->name)
-            ->first();
+        // Admin can get all authenticators, others only their own
+        if(!$user->hasRole('Admin')) {
+            $query->where('user_id', Auth::user()->id);
+        }
+
+        $authenticator = $query->first();
 
 
         if ($authenticator) {
